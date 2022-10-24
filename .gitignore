@@ -5,8 +5,6 @@ version.json
 # testing scripts
 makepackage.php
 cleardb.php
-# htaccess
-.htaccess
 # phpmyadmin
 phpmyadmin/
 # ignore created packages
