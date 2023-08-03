@@ -152,7 +152,7 @@ class Field_Parsedown extends Field {
 				</div>
 				<div class="pd_content_header_row">
 					<div class="pd_tab_content write_content active">
-						<textarea class="input pd_parsedown_content" <?php echo $this->get_rendered_name(); ?> ><?php echo $this->default; ?></textarea>
+						<textarea id="upload_space" class="input pd_parsedown_content" <?php echo $this->get_rendered_name(); ?> ><?php echo $this->default; ?></textarea>
 					</div>
 					<div class="pd_tab_content preview_content">
 						<p>some content here</p>
@@ -216,6 +216,31 @@ class Field_Parsedown extends Field {
 					}
 				}); */
 			</script>
+			<div id="image_upload_form"></div><div id="regular_upload"></div> <?php //fake for js ?>
+			<?php $max_upload_size_bytes = File::get_max_upload_size_bytes(); ?>
+			<div id='upload_modal' class="modal">
+				<div class="modal-background"></div>
+				<div class="modal-card">
+					<header class="modal-card-head">
+						<p class="modal-card-title">Upload images</p>
+						<button class="delete" aria-label="close"></button>
+					</header>
+					<section class="modal-card-body">
+						<p>test</p>
+						<form id='image_upload_form' action='<?php echo Config::uripath();?>/admin/images/uploadv2' method="POST" enctype="multipart/form-data">
+						</form>
+					</section>
+					<footer class="modal-card-foot">
+						<button onclick='document.getElementById("image_upload_form_submit").click();' class="button is-success">Upload</button>
+						<button class="button cancel">Cancel</button>
+					</footer>
+				</div>
+			</div>
+			<script>
+				window.max_upload_size_bytes = <?php echo $max_upload_size_bytes;?>;
+				window.uripath = "<?php echo Config::uripath(); ?>";
+			</script>
+			<script src="<?php echo Config::uripath(); ?>/admin/controllers/images/views/show/script.js"></script>
 		<?php
 	}
 
